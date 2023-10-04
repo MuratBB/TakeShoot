@@ -2,15 +2,19 @@
 
 
 #include "Core/Character/CCharacterSelectorPawn.h"
-#include "UnrealWidgetFwd.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
-#include "Kismet/KismetMathLibrary.h"
+#include "Blueprint/WidgetLayoutLibrary.h"
 
 // Sets default values
 ACCharacterSelectorPawn::ACCharacterSelectorPawn()
 {
-	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+}
+
+void ACCharacterSelectorPawn::removeTeamWidget()
+{
+	UWidgetLayoutLibrary::RemoveAllWidgets(GetWorld());
+	UE_LOG(LogTemp,Warning,TEXT("Remove All Widget %hhd ") , PawnCurrentTeam);
 }
 
 // Called when the game starts or when spawned
@@ -65,9 +69,7 @@ void ACCharacterSelectorPawn::ReadyServer_Implementation(CurrentTeam CurrentTeam
 void ACCharacterSelectorPawn::LeaveTeamClient_Implementation(CurrentTeam CurrentTeam)
 {
 	UWidgetBlueprintLibrary::GetAllWidgetsOfClass(GetWorld(),FoundedWidget,WidgetClassRef);
-
-	UE_LOG(LogTemp,Warning,TEXT("Index Founded : %d") , FoundedWidget.Num());
-
+	
 	//If Team 1 Selected
 	if (CurrentTeam == CurrentTeam::E_Team1)
 	{
@@ -99,9 +101,7 @@ void ACCharacterSelectorPawn::LeaveTeamServer_Implementation(CurrentTeam Current
 void ACCharacterSelectorPawn::TeamSelectionClient_Implementation(CurrentTeam CurrentTeam)
 {
 	UWidgetBlueprintLibrary::GetAllWidgetsOfClass(GetWorld(),FoundedWidget,WidgetClassRef);
-
-	UE_LOG(LogTemp,Warning,TEXT("Index Founded : %d") , FoundedWidget.Num());
-
+	
 	//If Team 1 Selected
 	if (CurrentTeam == CurrentTeam::E_Team1)
 	{

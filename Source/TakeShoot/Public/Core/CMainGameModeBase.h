@@ -15,7 +15,5 @@ class TAKESHOOT_API ACMainGameModeBase : public AGameModeBase
 	GENERATED_BODY()
 public:
 	ACMainGameModeBase();
-	virtual ~ACMainGameModeBase() = default;
-	
 	
 };

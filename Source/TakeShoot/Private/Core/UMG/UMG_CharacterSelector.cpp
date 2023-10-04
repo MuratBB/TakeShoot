@@ -56,7 +56,6 @@ void UUMG_CharacterSelector::NativeTick(const FGeometry& MyGeometry, float InDel
 
 	if (!CharacterSelectorPawnRef)
 	{
-		UE_LOG(LogTemp,Warning,TEXT("CHARACTER YOK"));
 		CharacterSelectorPawnRef = Cast<ACCharacterSelectorPawn>(GetOwningPlayer()->GetPawn());
 	}
 	
@@ -106,7 +105,6 @@ FReply UUMG_CharacterSelector::NativeOnMouseButtonDown(const FGeometry& InGeomet
 					FakeButton_Ready->SetVisibility(ESlateVisibility::Visible);
 				}else
 				{
-					UE_LOG(LogTemp,Warning,TEXT("Max Player Reached For Team 1"));
 					TXT_MaxPlayerReachedTeam1->SetVisibility(ESlateVisibility::Visible);
 				}
 			}
@@ -121,7 +119,6 @@ FReply UUMG_CharacterSelector::NativeOnMouseButtonDown(const FGeometry& InGeomet
 					FakeButton_Ready->SetVisibility(ESlateVisibility::Visible);
 				}else
 				{
-					UE_LOG(LogTemp,Warning,TEXT("Max Player Reached For Team 2"));
 					TXT_MaxPlayerReachedTeam2->SetVisibility(ESlateVisibility::Visible);
 				}
 			}
@@ -182,7 +179,6 @@ FReply UUMG_CharacterSelector::NativeOnMouseButtonDown(const FGeometry& InGeomet
 		{
 			if (CharacterSelectorPawnRef->PawnCurrentTeam!=CurrentTeam::E_NoTeamSleceted)
 			{
-				UE_LOG(LogTemp,Warning,TEXT("Ready Selected Call Event"));
 				CharacterSelectorPawnRef->Ready(CharacterSelectorPawnRef->PawnCurrentTeam);
 				TXT_Ready->SetVisibility(ESlateVisibility::Visible);
 			

@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "Blueprint/UserWidget.h"
 #include "Components/Border.h"
-#include "Components/Button.h"
 #include "Components/TextBlock.h"
 #include "Core/CBaseGameState.h"
 class ACCharacterSelectorPawn;

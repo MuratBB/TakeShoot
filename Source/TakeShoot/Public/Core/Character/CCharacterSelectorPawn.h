@@ -16,6 +16,15 @@ class TAKESHOOT_API ACCharacterSelectorPawn : public ACharacter
 public:
 	// Sets default values for this character's properties
 	ACCharacterSelectorPawn();
+
+	UPROPERTY(BlueprintReadWrite)
+	UUserWidget* BPCharacterSelectorWidget;
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<UUMG_CharacterSelector> WidgetClassRef;
+
+	UPROPERTY()
+	TArray<UUserWidget*> FoundedWidget;
 	
 	UPROPERTY()
 	bool Team1SelectionHovvered;
@@ -44,6 +53,8 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	CurrentTeam PawnCurrentTeam = CurrentTeam::E_NoTeamSleceted;
 
+	UFUNCTION()
+	void removeTeamWidget();
 
 protected:
 	// Called when the game starts or when spawned
@@ -66,16 +77,6 @@ protected:
 
 	UFUNCTION(Server,Reliable)
 	void ReadyServer(CurrentTeam CurrentTeam);
-	
-	UPROPERTY(BlueprintReadWrite,EditAnywhere)
-	UUserWidget* BPCharacterSelectorWidget;
-
-	UPROPERTY(BlueprintReadWrite,EditAnywhere)
-	TSubclassOf<UUMG_CharacterSelector> WidgetClassRef;
-	
-	UPROPERTY()
-	TArray<UUserWidget*> FoundedWidget;
-
 	
 public:
 	// Called every frame
